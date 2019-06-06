@@ -33,7 +33,7 @@ export default class ButtonBasics extends Component {
         <View style={styles.alternativeLayoutButtonContainer}>
           <Button
             onPress={this._onPressButton}
-            title="This looks great!"
+            title="This looks great"
           />
           <Button
             onPress={this._onPressButton}
