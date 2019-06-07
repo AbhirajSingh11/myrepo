@@ -11,7 +11,7 @@ import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
 
 export default class ButtonBasics extends Component {
   _onPressButton() {
-    Alert.alert('You tapped the button!')
+    Alert.alert('You tapped the button!!')
   }
 
   render() {
