@@ -6,49 +6,60 @@
  * @flow
  */
 
-import React from 'react';
-import { Animated, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
 
-class FadeInView extends React.Component {
-  state = {
-    fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
-  }
-
-  componentDidMount() {
-    Animated.timing(                  // Animate over time
-      this.state.fadeAnim,            // The animated value to drive
-      {
-        toValue: 1,                   // Animate to opacity: 1 (opaque)
-        duration: 10000,              // Make it take a while
-      }
-    ).start();                        // Starts the animation
+export default class ButtonBasics extends Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
   }
 
   render() {
-    let { fadeAnim } = this.state;
-
     return (
-      <Animated.View                 // Special animatable View
-        style={{
-          ...this.props.style,
-          opacity: fadeAnim,         // Bind opacity to animated value
-        }}
-      >
-        {this.props.children}
-      </Animated.View>
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+            color="#841584"
+          />
+        </View>
+        <View style={styles.alternativeLayoutButtonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="This looks great!!!"
+          />
+          <Button
+            onPress={this._onPressButton}
+            title="OK!"
+            color="#841584"
+          />
+        </View>
+      </View>
     );
   }
 }
 
-// You can then use your `FadeInView` in place of a `View` in your components:
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <FadeInView style={{width: 250, height: 50, backgroundColor: 'powderblue'}}>
-          <Text style={{fontSize: 28, textAlign: 'center', margin: 10}}>Fading in</Text>
-        </FadeInView>
-      </View>
-    )
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   justifyContent: 'center',
+  },
+  buttonContainer: {
+    margin: 20
+  },
+  alternativeLayoutButtonContainer: {
+    margin: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
-}
+});
+
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('AwesomeProject', () => ButtonBasics);
